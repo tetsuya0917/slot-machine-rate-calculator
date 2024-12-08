@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>パチスロ機械割計算ツール</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>パチスロ機械割計算ツール</h1>
+        <form id="calc-form">
+            <input type="number" id="in-coins" placeholder="IN枚数を入力" required>
+            <input type="number" id="out-coins" placeholder="OUT枚数を入力" required>
+            <button type="button" onclick="calculate()">計算する</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            // 入力値を取得
+            const inCoins = parseFloat(document.getElementById("in-coins").value);
+            const outCoins = parseFloat(document.getElementById("out-coins").value);
+
+            // 入力値のチェック
+            if (isNaN(inCoins) || isNaN(outCoins) || inCoins <= 0) {
+                document.getElementById("result").innerText = "正しい値を入力してください。";
+                return;
+            }
+
+            // 機械割を計算
+            const machineRate = (outCoins / inCoins) * 100;
+
+            // 結果を表示
+            document.getElementById("result").innerText = `機械割: ${machineRate.toFixed(2)}%`;
+        }
+    </script>
+</body>
+</html>
