@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ビッグドリーム 残48個以内期待度計算ツール</title>
+
+<style>
+
+body{
+font-family:sans-serif;
+background:#111;
+color:white;
+padding:20px;
+}
+
+.box{
+max-width:500px;
+margin:auto;
+background:#222;
+padding:20px;
+border-radius:12px;
+}
+
+.title{
+color:#ff9900;
+font-size:18px;
+white-space:nowrap;
+}
+
+input{
+width:60px;
+font-size:16px;
+margin:3px;
+}
+
+button{
+margin-top:20px;
+padding:12px 30px;
+font-size:18px;
+}
+
+.green{
+color:#00ff66;
+}
+
+.purple{
+color:#cc66ff;
+}
+
+.result{
+margin-top:25px;
+font-size:22px;
+color:#ff9900;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="box">
+
+<h2 class="title">
+ビッグドリーム　残48個以内期待度計算ツール
+</h2>
+
+
+ビッグ <input id="big" type="number" value="0"><br>
+メガ <input id="mega" type="number" value="0"><br>
+ギガ <input id="giga" type="number" value="0"><br>
+ワオ <input id="wow" type="number" value="0"><br>
+グッド <input id="good" type="number" value="0"><br>
+フォーカス <input id="focus" type="number" value="0">
+
+
+<br><br>
+
+
+<div class="green">
+
+テラ <input id="tera" type="number" value="0"><br>
+マーベラス <input id="marvelous" type="number" value="0">
+
+</div>
+
+
+<br><br>
+
+
+<div class="purple">
+
+セブン <input id="seven" type="number" value="0"><br>
+ゴールデン <input id="gold" type="number" value="0"><br>
+インフィニット <input id="infinite" type="number" value="0"><br>
+究極 <input id="ultimate" type="number" value="0"><br>
+1万 <input id="tenk" type="number" value="0"><br>
+カウントダウン <input id="count" type="number" value="0">
+
+</div>
+
+
+<button onclick="calc()">計算</button>
+
+
+<div class="result" id="result"></div>
+
+
+</div>
+
+
+<script>
+
+function get(id){
+return Number(document.getElementById(id).value);
+}
+
+
+function calc(){
+
+let within =
+0.25 *
+Math.pow(0.72,get("big")) *
+Math.pow(0.72,get("mega")) *
+Math.pow(0.72,get("giga")) *
+Math.pow(0.72,get("wow")) *
+Math.pow(0.72,get("good")) *
+Math.pow(0.72,get("focus")) *
+Math.pow(0.08,get("tera")) *
+Math.pow(0.18,get("marvelous")) *
+Math.pow(0.18,get("seven")) *
+Math.pow(0.18,get("gold")) *
+Math.pow(0.18,get("infinite")) *
+Math.pow(0.18,get("ultimate")) *
+Math.pow(0.18,get("tenk")) *
+Math.pow(0.02,get("count"));
+
+
+let outside =
+0.75 *
+Math.pow(0.89,get("big")) *
+Math.pow(0.89,get("mega")) *
+Math.pow(0.89,get("giga")) *
+Math.pow(0.89,get("wow")) *
+Math.pow(0.89,get("good")) *
+Math.pow(0.89,get("focus")) *
+Math.pow(0.05,get("tera")) *
+Math.pow(0.06,get("marvelous")) *
+Math.pow(0.06,get("seven")) *
+Math.pow(0.06,get("gold")) *
+Math.pow(0.06,get("infinite")) *
+Math.pow(0.06,get("ultimate")) *
+Math.pow(0.06,get("tenk"));
+
+
+if(get("count")>0){
+outside=0;
+}
+
+
+let ans =
+within/(within+outside)*100;
+
+
+document.getElementById("result").innerHTML =
+"48個以内期待度<br><b>"+
+ans.toFixed(1)+
+"%</b><br><br>"+
+"48個以上期待度<br>"+
+(100-ans).toFixed(1)+
+"%";
+
+}
+
+</script>
+
+</body>
+</html>
